@@ -4,6 +4,19 @@ import { useParams } from 'react-router-dom';
 import '../movieDetails.css'; // Import the CSS file
 import { Link, useLocation } from 'react-router-dom';
 
+export function getReleaseDate(movie) {
+  let releaseDate = '';
+  if (movie && movie.release_date) {
+    releaseDate = new Date(movie.release_date).toLocaleString('en-US', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
+  return releaseDate;
+}
+
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
@@ -28,16 +41,6 @@ function MovieDetails() {
 
     fetchMovieDetails();
   }, [id]);
-
-  let releaseDate = '';
-  if (movie && movie.release_date) {
-    releaseDate = new Date(movie.release_date).toLocaleString('en-US', {
-      timeZone: 'UTC',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  }
 
   return (
     <div className="movie-details-container">
@@ -80,7 +83,7 @@ function MovieDetails() {
             </div>
 
             <h1 className="movie-title" data-testid="movie-title">{movie.title}</h1>
-            <p className="movie-release-date" data-testid="movie-release-date">{releaseDate}</p>
+            <p className="movie-release-date" data-testid="movie-release-date">{getReleaseDate(movie)}</p>
             <p className="movie-runtime" data-testid="movie-runtime">{movie.runtime} minutes</p>
             <p className="movie-overview" data-testid="movie-overview">{movie.overview}</p>
 
