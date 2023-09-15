@@ -29,12 +29,15 @@ function MovieDetails() {
     fetchMovieDetails();
   }, [id]);
 
-  const releaseDate = new Date(movie.release_date).toLocaleString('en-US', {
-    timeZone: 'UTC',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  let releaseDate = '';
+  if (movie && movie.release_date) {
+    releaseDate = new Date(movie.release_date).toLocaleString('en-US', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
 
   return (
     <div className="movie-details-container">

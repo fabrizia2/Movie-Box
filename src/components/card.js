@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeartIcon from './fav';
 import axios from 'axios';
+import releaseDate from './MovieDetails';
 
 
 function Card({ movie }) {
@@ -58,7 +59,7 @@ function Card({ movie }) {
           </div>
         </div>
         <h2 data-testid="movie-title">{movie.title}</h2>
-        <p data-testid="movie-release-date">{movie.release_date}</p>
+        <p data-testid="movie-release-date">{releaseDate}</p>
         <p className="movie-genres">{getGenreNames().join(', ')}</p>
       </Link>
     </div>
