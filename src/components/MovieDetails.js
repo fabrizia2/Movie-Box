@@ -29,6 +29,13 @@ function MovieDetails() {
     fetchMovieDetails();
   }, [id]);
 
+  const releaseDate = new Date(movie.release_date).toLocaleString('en-US', {
+    timeZone: 'UTC',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <div className="movie-details-container">
       <div className="nabar">
@@ -70,7 +77,7 @@ function MovieDetails() {
             </div>
 
             <h1 className="movie-title" data-testid="movie-title">{movie.title}</h1>
-            <p className="movie-release-date" data-testid="movie-release-date">{movie.release_date}</p>
+            <p className="movie-release-date" data-testid="movie-release-date">{releaseDate}</p>
             <p className="movie-runtime" data-testid="movie-runtime">{movie.runtime} minutes</p>
             <p className="movie-overview" data-testid="movie-overview">{movie.overview}</p>
 
